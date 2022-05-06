@@ -13,7 +13,7 @@ public class Player{
   }
 
   public void addCard(Card c){
-    //Mehtod gives the player a card
+    //Method gives the player a card
     if (c != null){
       hand.add(c);  
     }
