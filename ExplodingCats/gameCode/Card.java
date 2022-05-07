@@ -1,3 +1,4 @@
+package gameCode;
 public class Card{
 
   private String name;
