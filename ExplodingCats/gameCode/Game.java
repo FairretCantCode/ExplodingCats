@@ -1,3 +1,4 @@
+package gameCode;
 public class Game{
 
   private int currentPlayerIndex;
