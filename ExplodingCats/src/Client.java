@@ -12,7 +12,7 @@ public class Client extends Thread {
 	private BufferedReader reader;
 	private PrintWriter writer;
 	
-	public Client(int p, int ip) {
+	public Client(int p, String ip) {
 		this.port = p;
 		this.ipAddress = ip;
 	
@@ -24,7 +24,7 @@ public class Client extends Thread {
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			writer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 		}catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Can't connect");
 		}
 	}
 	
@@ -32,7 +32,8 @@ public class Client extends Thread {
 	public void run(){
 		while(true) {
 			try {
-				System.out.println(reader.readLine());
+				String msgFromServer = reader.readLine();
+				System.out.println(msgFromServer);
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
