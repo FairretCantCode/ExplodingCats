@@ -39,20 +39,17 @@ public class Server extends Thread {
         {
             e.printStackTrace();
         }
-		pool = Executors.newFixedThreadPool(2);
+		pool = Executors.newFixedThreadPool(8);
 	}
 	
 	@Override
 	public void run() {
 		running = true;
-		while(clients.size() < 2) {
-			System.out.println(clients.size());
+		while(running) {
 			try {
-				ClientHandler client = new ClientHandler(sSocket.accept());				
-				if (client.askForKey().equals(privateKey)) {
-					clients.add(client);
-					client.run();
-				}
+				ClientHandler client = new ClientHandler(sSocket.accept());			
+				clients.add(client);
+				client.run();
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -60,6 +57,7 @@ public class Server extends Thread {
 	}
 	
 	public void closeServer(){
+		running = false;
 		for (ClientHandler c: clients) {
 			c.send("quit");
 		}
@@ -69,13 +67,13 @@ public class Server extends Thread {
 			e.printStackTrace();
 		}
 		pool.shutdown();
-		running = false;
+		
 	}
 	
 	public void makeGame() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		for (ClientHandler client:clients) {
-			players.add(new Player(client.askForName(), client));
+			players.add(new Player(client.getNameOfPlayer(), client));
 			System.out.println("here");
 			
 		}
