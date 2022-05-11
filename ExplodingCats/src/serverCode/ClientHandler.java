@@ -29,24 +29,25 @@ public class ClientHandler extends Thread {
 	
 	@Override
 	public void run() {
-		
-		
-	}
-	public String askForKey(){
-		return "YouSuckAtCoding";
-	}
-	
-	public String askForName() {
-		if (name == null) {
+		while (name == null) {
 			try {
-				send("write your name");
-				name = reader.readLine();
-			}catch (IOException e){
+				if (reader.readLine().equals("hi")){
+					writer.println("state your name");
+					name = reader.readLine();
+				}
+			}catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
+		//After registered into game
+		
+		
+	}
+	
+	public String getNameOfPlayer() {
 		return name;
 	}
+	
 	
 	public String askForCard() {
 		try {
