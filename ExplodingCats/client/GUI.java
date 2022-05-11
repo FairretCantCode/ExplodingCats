@@ -1,37 +1,68 @@
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 public class GUI implements ActionListener{
 	
 	
-	JFrame frame = new JFrame("Exploding Daub");
+	private JFrame frame;
+	private String ip;
+	private int port;
 	
-	public GUI 
-	public void startApplication() {
-		
+	private ArrayList<Component> components;
+	
+	public GUI() {
+		frame = new JFrame("Exploding Daub");
 		frame.setVisible(true);
 		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		components = new ArrayList<Component>();
+	}
+	
+	//Useful functions
+	public void placeComponents() {
+		for (Component c: this.components) {
+			this.frame.add(c);
+		}
+	}
+	
+	public void removeComponents() {
+		for (Component c: this.frame.getComponents()) {
+			frame.remove(c);
+		}
+	}
+	
+	public void startApp() {
 		
-
 		JButton startButton = new JButton("Start Game");
-		{}
-		frame.getContentPane().add(startButton);
 		startButton.addActionListener(this);
+		startButton.setActionCommand("start game");
+		components.add(startButton);
+		placeComponents();
+	}
+	public void gameApp() {
+		
 		
 		
 	}
-	public void gameApp() {
-		JFrame game = new JFrame("Exploding Daub");
-		game.setVisible(true);
-		game.setSize(1600,1200);
-		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
+	
+	//Getters
+	public int getPort() {
+		return port;
+	}
+	public String getIp() {
+		return ip;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		switch (e.getActionCommand()) {
+		case "start game": 
+			gameApp();
+		}
 		
 	
 	}

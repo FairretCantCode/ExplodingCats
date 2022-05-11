@@ -1,5 +1,6 @@
+import java.awt.event.*;
 
-public class User {
+public class User implements ActionListener{
 	
 	private String name;
 	private Client client;
@@ -7,16 +8,25 @@ public class User {
 	
 	public User() {
 		gui = new GUI();
-		int PORT = 4999;
-		String ip = "192.168.1.131";
-		client = new Client(PORT, ip);
+		
 		
 	}
 	
-	public void startGame() {
-		client.startConnection();
+	public void launch() {
+		gui.startApp();
 		
-		gui.startApplication();
-		client.run();
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+		case "start game":
+			int PORT = gui.getPort();
+			String ip = gui.getIp();
+			client = new Client(PORT, ip);
+			client.startConnection();
+		}
+		
+	}
+	
 }
