@@ -25,6 +25,7 @@ public class GUI implements ActionListener{
 		frame.setVisible(true);
 		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setLayout(null);
 		components = new ArrayList<Component>();
 	}
 	
@@ -58,6 +59,7 @@ public class GUI implements ActionListener{
 		title.setBorder(boarder);
 		title.setVerticalAlignment(JLabel.TOP);
 		title.setHorizontalAlignment(JLabel.CENTER);
+		//title.setBounds(0,0,250,250);
 		components.add(title);
 		
 		placeComponents();
