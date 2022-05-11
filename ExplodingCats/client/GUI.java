@@ -1,13 +1,18 @@
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 public class GUI implements ActionListener{
-	
+	//https://www.youtube.com/watch?v=Kmgo00avvEw
 	
 	private JFrame frame;
 	private String ip;
@@ -37,11 +42,24 @@ public class GUI implements ActionListener{
 	}
 	
 	public void startApp() {
-		
+		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
 		JButton startButton = new JButton("Start Game");
 		startButton.addActionListener(this);
 		startButton.setActionCommand("start game");
+		startButton.setVisible(true);
 		components.add(startButton);
+		JLabel title = new JLabel("Exploding Daub!!!");
+		title.setHorizontalTextPosition(JLabel.CENTER);
+		title.setVerticalTextPosition(JLabel.TOP);
+		title.setForeground(new Color(0xFF5733));
+		title.setFont(new Font("Comic Sans", Font.ITALIC, 40));
+		title.setBackground(Color.GRAY);
+		title.setOpaque(true);
+		title.setBorder(boarder);
+		title.setVerticalAlignment(JLabel.TOP);
+		title.setHorizontalAlignment(JLabel.CENTER);
+		components.add(title);
+		
 		placeComponents();
 	}
 	public void gameApp() {
