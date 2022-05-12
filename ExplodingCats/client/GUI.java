@@ -42,14 +42,17 @@ public class GUI implements ActionListener{
 		JButton startButton = new JButton("Start Game");
 		startButton.addActionListener(this);
 		startButton.setActionCommand("start game");
+		startButton.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(400,300));
 		panel.setBackground(Color.RED);
 		panel.setLayout(new FlowLayout());
-		panel.add(new JButton ("1"));
+		panel.add(startButton);
+		panel.setVisible(true);
 		frame.add(panel);
-		frame.setVisible(true);
+		panel.revalidate();
+		panel.repaint();
 		/*JLabel title = new JLabel("Exploding Daub!!!");
 		//title.setHorizontalTextPosition(JLabel.CENTER);
 		//title.setVerticalTextPosition(JLabel.TOP);
