@@ -37,13 +37,20 @@ public class GUI implements ActionListener{
 	
 	public void startApp() {
 		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
-		frame.setLayout(new FlowLayout(FlowLayout.CENTER));
+		//frame.setLayout(new FlowLayout(FlowLayout.CENTER));
+		
 		JButton startButton = new JButton("Start Game");
 		startButton.addActionListener(this);
 		startButton.setActionCommand("start game");
 		
-		
-		JLabel title = new JLabel("Exploding Daub!!!");
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(400,300));
+		panel.setBackground(Color.RED);
+		panel.setLayout(new FlowLayout());
+		panel.add(new JButton ("1"));
+		frame.add(panel);
+		frame.setVisible(true);
+		/*JLabel title = new JLabel("Exploding Daub!!!");
 		//title.setHorizontalTextPosition(JLabel.CENTER);
 		//title.setVerticalTextPosition(JLabel.TOP);
 		title.setForeground(new Color(0xFF5733));
@@ -54,10 +61,12 @@ public class GUI implements ActionListener{
 		title.setVerticalAlignment(JLabel.TOP);
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setBounds(150,0,500,60);
-		components.add(title);
-		components.add(startButton);
-		startButton.setVisible(true);
-		placeComponents();
+		components.add(title);*/
+		
+		//components.add(startButton);
+		//components.add(panel);
+		//frame.setVisible(true);
+		//placeComponents();
 		//frame.repaint();
 	}
 	public void gameApp() {
