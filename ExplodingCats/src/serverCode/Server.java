@@ -15,14 +15,12 @@ public class Server extends Thread {
 	private int port;
 	private ServerSocket sSocket;
 	private boolean running;
-	private String privateKey;
 	//Game Stuff
 	private ArrayList<ClientHandler> clients;
 	private ExecutorService pool;
 	private Game game;
 	
 	public Server(int portNum){
-		privateKey = "YouSuckAtCoding";
 		running = false;
 		port = portNum;
 		clients = new ArrayList<ClientHandler>();
@@ -30,16 +28,18 @@ public class Server extends Thread {
 	}
 	
 	public void startServer(){
+		
 		try
         {
             sSocket = new ServerSocket( port );
+            pool = Executors.newFixedThreadPool(8);
             this.start();
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-		pool = Executors.newFixedThreadPool(8);
+		
 	}
 	
 	@Override
@@ -73,9 +73,7 @@ public class Server extends Thread {
 	public void makeGame() {
 		ArrayList<Player> players = new ArrayList<Player>();
 		for (ClientHandler client:clients) {
-			players.add(new Player(client.getNameOfPlayer(), client));
-			System.out.println("here");
-			
+			players.add(new Player(client.getNameOfPlayer(), client));			
 		}
 		game = new Game(players);
 		System.out.println("Game is created");
