@@ -28,5 +28,8 @@ public class User implements ActionListener{
 		}
 		
 	}
+	public void setName(String s) {
+		name = s;
+	}
 	
 }

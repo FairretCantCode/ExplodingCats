@@ -18,6 +18,7 @@ public class GUI implements ActionListener{
 	public GUI() {
 		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
 		
+		
 		frame = new JFrame("Exploding Daub");
 		frame.setVisible(true);
 		frame.setSize(800, 600);
@@ -34,7 +35,9 @@ public class GUI implements ActionListener{
 		startButton.setBounds(70, 200, 200, 50);
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//this.frame.Destroy()
+				System.out.println(textField.getText());
+				//setName(textField.getText());
+				panel.setVisible(false);
 			}
 		});
 		startButton.setFont(new Font("Comic Sans", Font.ITALIC, 10));
@@ -53,7 +56,11 @@ public class GUI implements ActionListener{
 		textField.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(textField);
 		textField.setColumns(10);
+		textField.setBackground(Color.WHITE);
+		textField.setEditable(true);
+		textField.setVisible(true);
 		components = new ArrayList<Component>();
+		frame.repaint();
 	}
 	
 	//Useful functions
@@ -70,41 +77,7 @@ public class GUI implements ActionListener{
 	}
 	
 	public void startApp() {
-		/*Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
-		//frame.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
-		JButton startButton = new JButton("Start Game");
-		startButton.addActionListener(this);
-		startButton.setActionCommand("start game");
-		startButton.setVisible(true);
-		
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(400,300));
-		panel.setBackground(Color.RED);
-		panel.setLayout(new FlowLayout());
-		panel.add(startButton);
-		panel.setVisible(true);
-		frame.getContentPane().add(panel);
-		panel.revalidate();
-		panel.repaint();
-		/*JLabel title = new JLabel("Exploding Daub!!!");
-		//title.setHorizontalTextPosition(JLabel.CENTER);
-		//title.setVerticalTextPosition(JLabel.TOP);
-		title.setForeground(new Color(0xFF5733));
-		title.setFont(new Font("Comic Sans", Font.ITALIC, 40));
-		title.setBackground(Color.GRAY);
-		title.setOpaque(true);
-		title.setBorder(boarder);
-		title.setVerticalAlignment(JLabel.TOP);
-		title.setHorizontalAlignment(JLabel.CENTER);
-		title.setBounds(150,0,500,60);
-		components.add(title);*/
-		
-		//components.add(startButton);
-		//components.add(panel);
-		//frame.setVisible(true);
-		//placeComponents();
-		//frame.repaint();*/
 	}
 	public void gameApp() {
 		removeComponents();
