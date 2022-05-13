@@ -12,20 +12,54 @@ public class GUI implements ActionListener{
 	private int port;
 	
 	private ArrayList<Component> components;
+	private final Action action = new SwingAction();
+	private JTextField textField;
 	
 	public GUI() {
+		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
+		
 		frame = new JFrame("Exploding Daub");
 		frame.setVisible(true);
 		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(null);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(240, 150, 350, 300);
+		panel.setBackground(Color.GRAY);
+		panel.setBorder(boarder);
+		frame.getContentPane().add(panel);
+		
+		JButton startButton = new JButton("Join Game");
+		startButton.setBounds(70, 200, 200, 50);
+		startButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//this.frame.Destroy()
+			}
+		});
+		startButton.setFont(new Font("Comic Sans", Font.ITALIC, 10));
+		panel.setLayout(null);
+		
+		JLabel title = new JLabel("Exploding daub!!!");
+		title.setFont(new Font("Comic Sans", Font.ITALIC, 30));
+		title.setForeground(new Color(0xFF5733));
+		title.setBounds(39, 11, 264, 48);
+		title.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(title);
+		panel.add(startButton);
+		
+		textField = new JTextField("(Name)");
+		textField.setBounds(70, 104, 200, 50);
+		textField.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(textField);
+		textField.setColumns(10);
 		components = new ArrayList<Component>();
 	}
 	
 	//Useful functions
 	public void placeComponents() {
 		for (Component c: this.components) {
-			this.frame.add(c);
+			this.frame.getContentPane().add(c);
 		}
 	}
 	
@@ -36,7 +70,7 @@ public class GUI implements ActionListener{
 	}
 	
 	public void startApp() {
-		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
+		/*Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
 		//frame.setLayout(new FlowLayout(FlowLayout.CENTER));
 		
 		JButton startButton = new JButton("Start Game");
@@ -50,7 +84,7 @@ public class GUI implements ActionListener{
 		panel.setLayout(new FlowLayout());
 		panel.add(startButton);
 		panel.setVisible(true);
-		frame.add(panel);
+		frame.getContentPane().add(panel);
 		panel.revalidate();
 		panel.repaint();
 		/*JLabel title = new JLabel("Exploding Daub!!!");
@@ -70,7 +104,7 @@ public class GUI implements ActionListener{
 		//components.add(panel);
 		//frame.setVisible(true);
 		//placeComponents();
-		//frame.repaint();
+		//frame.repaint();*/
 	}
 	public void gameApp() {
 		removeComponents();
@@ -94,5 +128,12 @@ public class GUI implements ActionListener{
 		
 	
 	}
-	
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
+	}
 }
