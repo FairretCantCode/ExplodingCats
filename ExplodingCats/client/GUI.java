@@ -38,6 +38,7 @@ public class GUI implements ActionListener{
 				System.out.println(textField.getText());
 				//setName(textField.getText());
 				panel.setVisible(false);
+				GUI2.startApp();
 			}
 		});
 		startButton.setFont(new Font("Comic Sans", Font.ITALIC, 10));
