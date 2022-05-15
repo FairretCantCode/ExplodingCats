@@ -15,6 +15,7 @@ public class ServerController implements ActionListener {
 		frame = new JFrame("Server Controller");
 		panel = new JPanel();
 		server = new Server(4555);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void lanuch() {
@@ -58,6 +59,7 @@ public class ServerController implements ActionListener {
 			break;
 		case "stop server":
 			server.closeServer();
+			frame.dispose();
 			break;
 		}
 		

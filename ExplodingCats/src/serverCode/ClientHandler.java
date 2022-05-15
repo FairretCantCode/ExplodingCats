@@ -3,7 +3,6 @@ package serverCode;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -16,12 +15,12 @@ public class ClientHandler extends Thread {
 	private PrintWriter writer;
 	private String name;
 	
-	public ClientHandler(Socket client){
-		this.client = client;
+	public ClientHandler(Socket c){
+		this.client = c;
 		name = null;
 		try {
 			reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			writer = new PrintWriter(new OutputStreamWriter(client.getOutputStream()), true);
+			writer = new PrintWriter(client.getOutputStream(), true);
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -31,16 +30,32 @@ public class ClientHandler extends Thread {
 	public void run() {
 		while (name == null) {
 			try {
-				if (reader.readLine().equals("hi")){
-					writer.println("state your name");
-					name = reader.readLine();
-				}
+				name = reader.readLine();
 			}catch (IOException e) {
 				e.printStackTrace();
+				break;
 			}
 		}
 		//After registered into game
-		
+		try {
+			 String line = reader.readLine();
+	            while( line != null && line.length() > 0 )
+	            {
+	                writer.println( "Echo: " + line);
+	                writer.flush();
+	                
+	                line = reader.readLine();
+	            }
+
+	            // Close our connection
+	            reader.close();
+	            writer.close();
+	            client.close();
+
+	            System.out.println( "Connection closed" );
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

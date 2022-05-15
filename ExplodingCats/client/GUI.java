@@ -4,18 +4,21 @@ import javax.swing.border.Border;
 
 import java.util.*;
 import java.awt.event.*;
-public class GUI implements ActionListener{
+public class GUI {
 	//https://www.youtube.com/watch?v=Kmgo00avvEw
 	
 	private JFrame frame;
 	private String ip;
 	private int port;
+	private String nameEntered;
+	private User parent;
 	
 	private ArrayList<Component> components;
 	private final Action action = new SwingAction();
 	private JTextField textField;
 	
-	public GUI() {
+	public GUI(User p) {
+		parent = p;
 		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
 		
 		
@@ -31,11 +34,12 @@ public class GUI implements ActionListener{
 		panel.setBorder(boarder);
 		frame.getContentPane().add(panel);
 		
-		JButton startButton = new JButton("Join Game");
+		JButton startButton = new JButton("start game");
 		startButton.setBounds(70, 200, 200, 50);
+		startButton.addActionListener(p);
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(textField.getText());
+				nameEntered = textField.getText();
 				//setName(textField.getText());
 				panel.setVisible(false);
 			}
@@ -92,15 +96,10 @@ public class GUI implements ActionListener{
 	public String getIp() {
 		return ip;
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		case "start game": 
-			gameApp();
-		}
-		
-	
+	public String getName() {
+		return nameEntered;
 	}
+	
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "SwingAction");
