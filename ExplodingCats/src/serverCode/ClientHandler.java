@@ -39,14 +39,14 @@ public class ClientHandler extends Thread {
 		//After registered into game
 		try {
 			 String line = reader.readLine();
-	            while( line != null && line.length() > 0 )
+	            while( true )
 	            {
-	                writer.println( "Echo: " + line);
-	                writer.flush();
-	                
-	                line = reader.readLine();
+	                switch(line) {
+	                case "give list of names":
+	                	
+	                }
 	            }
-
+	            
 	            // Close our connection
 	            reader.close();
 	            writer.close();
