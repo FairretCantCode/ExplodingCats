@@ -6,7 +6,7 @@ import java.util.*;
 import java.awt.event.*;
 public class GUI {
 	//https://www.youtube.com/watch?v=Kmgo00avvEw
-	
+	//la la la
 	private JFrame frame;
 	private String ip;
 	private int port;
