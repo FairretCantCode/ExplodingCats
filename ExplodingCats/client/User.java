@@ -26,9 +26,9 @@ public class User implements ActionListener{
 			client.startConnection();
 			client.setName(gui.getName());
 			gui.guiDelete();
-			client.run();
-			gui2 = new GameScreen(this);
 			
+			gui2 = new GameScreen(this);
+			client.run();
 		}
 		
 	}

@@ -36,16 +36,8 @@ public class Client extends Thread {
 		writer.flush();
 		Scanner scan = new Scanner(System.in);
 		while(true) {
-			try {
-				writer.println(scan.nextLine());
-				String msgFromServer = reader.readLine();
-				System.out.println(msgFromServer);
-				if (msgFromServer.equals("quit")) {
-					break;
-				}
-			}catch (IOException e) {
-				e.printStackTrace();
-			}
+			 
+	
 			
 		}
 		scan.close();
