@@ -4,20 +4,16 @@ import javax.swing.border.Border;
 
 import java.util.*;
 import java.awt.event.*;
-public class GUI {
+public class StartMenu {
 	//https://www.youtube.com/watch?v=Kmgo00avvEw
-	//la la la
 	private JFrame frame;
-	private String ip;
-	private int port;
 	private String nameEntered;
 	private User parent;
 	
-	private ArrayList<Component> components;
 	private final Action action = new SwingAction();
 	private JTextField textField;
 	
-	public GUI(User p) {
+	public StartMenu(User p) {
 		parent = p;
 		Border boarder = BorderFactory.createLineBorder(new Color(0xFF5733));
 		
@@ -41,8 +37,8 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				nameEntered = textField.getText();
 				//setName(textField.getText());
-				panel.setVisible(false);
-				GUI2.startApp();
+				
+				
 			}
 		});
 		startButton.setFont(new Font("Comic Sans", Font.ITALIC, 10));
@@ -64,39 +60,23 @@ public class GUI {
 		textField.setBackground(Color.WHITE);
 		textField.setEditable(true);
 		textField.setVisible(true);
-		components = new ArrayList<Component>();
 		frame.repaint();
 	}
 	
-	//Useful functions
-	public void placeComponents() {
-		for (Component c: this.components) {
-			this.frame.getContentPane().add(c);
-		}
-	}
 	
-	public void removeComponents() {
-		for (Component c: this.frame.getComponents()) {
-			frame.remove(c);
-		}
-	}
-	
+
 	public void startApp() {
 		
 	}
 	public void gameApp() {
-		removeComponents();
-		
-		
-	}
 	
+
+	}
+	public void guiDelete() {
+		frame.dispose();
+	}
 	//Getters
-	public int getPort() {
-		return port;
-	}
-	public String getIp() {
-		return ip;
-	}
+	
 	public String getName() {
 		return nameEntered;
 	}

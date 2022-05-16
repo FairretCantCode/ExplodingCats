@@ -4,10 +4,11 @@ public class User implements ActionListener{
 	
 	private String name;
 	private Client client;
-	private GUI gui;
+	private StartMenu gui;
+	private GameScreen gui2;
 	
 	public User(int port, String ip) {
-		gui = new GUI(this);
+		gui = new StartMenu(this);
 		client = new Client(port, ip);
 		
 	}
@@ -24,7 +25,10 @@ public class User implements ActionListener{
 			System.out.println("here");
 			client.startConnection();
 			client.setName(gui.getName());
+			gui.guiDelete();
 			client.run();
+			gui2 = new GameScreen(this);
+			
 		}
 		
 	}

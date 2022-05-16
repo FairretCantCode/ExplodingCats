@@ -6,18 +6,19 @@ import javax.swing.border.Border;
 
 import java.util.*;
 import java.awt.event.*;
-public class GUI2 implements ActionListener{
+public class GameScreen implements ActionListener{
 		
 		private JFrame frame2;
 		private String ip;
 		private int port;
 		private final Action action = new SwingAction();
+		private User parent; 
 
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public GUI2() {
-		
+	public GameScreen(User p)  {
+		parent = p;
 		frame2 = new JFrame("Exploding Daub");
 		frame2.getContentPane().setBackground(Color.GRAY);
 		frame2.setVisible(true);
@@ -55,6 +56,7 @@ public class GUI2 implements ActionListener{
 			
 		}
 	}
+	
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "SwingAction");
