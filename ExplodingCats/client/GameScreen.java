@@ -12,7 +12,6 @@ public class GameScreen implements ActionListener{
 		private int port;
 		private final Action action = new SwingAction();
 		private User parent; 
-		private ArrayList<String> mumsie = new ArrayList<String>();
 
 	/**
 	 * @wbp.parser.entryPoint
