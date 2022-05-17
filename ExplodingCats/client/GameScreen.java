@@ -42,7 +42,7 @@ public class GameScreen implements ActionListener{
 		
 	}
 
-
+	
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "start game": 

@@ -50,7 +50,17 @@ public class Client extends Thread {
 	}
 	
 	public void updatePlayerList() {
-
+		
+		try{
+			this.send(Message.GETPLAYERS);
+			String players = reader.readLines();
+		} catch (Exception e) {
+			
+		}
+		
+		
+		
+		
 	}
 	
 	@Override
