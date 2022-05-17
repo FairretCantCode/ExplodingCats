@@ -1,4 +1,6 @@
 import java.awt.event.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class User implements ActionListener{
 	
@@ -6,10 +8,11 @@ public class User implements ActionListener{
 	private Client client;
 	private StartMenu gui;
 	private GameScreen gui2;
+	private ExecutorService pool;
 	
 	public User(int port, String ip) {
 		client = new Client(port, ip);
-		
+		pool = Executors.newFixedThreadPool(1);
 	}
 	
 	public void launch() {
@@ -26,7 +29,7 @@ public class User implements ActionListener{
 			gui.guiDelete();
 			gui2 = new GameScreen(this);
 			client.setGameScreen(gui2);
-			client.run();
+			pool.execute(client);
 		}
 		
 	}
