@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 import serverCode.Message;
 
@@ -52,14 +53,17 @@ public class Client extends Thread {
 	public void updatePlayerList() {
 		
 		try{
+			ArrayList<String> give = new ArrayList<String>();
 			this.send(Message.GETPLAYERS);
-			String players = reader.readLines();
-		} catch (Exception e) {
+			String players = reader.readLine();
+			while (players.indexOf("|") > 0) {
+				give.add(players.substring(0,players.indexOf("|")));
+				players = players.substring( players.indexOf("|")+ 1, players.length());
+			}
+			gameScreen.updateNames(give);
+		} catch (IOException e) {
 			
 		}
-		
-		
-		
 		
 	}
 	

@@ -17,6 +17,7 @@ public class GameScreen implements ActionListener{
 	/**
 	 * @wbp.parser.entryPoint
 	 */
+		JLabel nameList = new JLabel("Names");
 	public GameScreen(User p)  {
 		parent = p;
 		frame2 = new JFrame("Exploding Daub");
@@ -26,9 +27,9 @@ public class GameScreen implements ActionListener{
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(0, 11, 117, 342);
-		frame2.getContentPane().add(lblNewLabel);
+		
+		nameList.setBounds(0, 11, 117, 342);
+		frame2.getContentPane().add(nameList);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(60, 394, 615, 156);
@@ -42,7 +43,13 @@ public class GameScreen implements ActionListener{
 		
 	}
 
-	
+	public void updateNames(ArrayList<String> e) {
+		String mhm = "Players:";
+		for (int i = 0; i < e.size(); i++) {
+			mhm += "\n" + e.get(i);
+		}
+		nameList.setText(mhm);
+	}
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "start game": 
