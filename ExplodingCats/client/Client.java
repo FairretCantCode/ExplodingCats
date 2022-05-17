@@ -47,7 +47,7 @@ public class Client extends Thread {
 	}
 	
 	public void updateInfo() {
-		
+		this.updatePlayerList();
 	}
 	
 	public void updatePlayerList() {
@@ -76,6 +76,7 @@ public class Client extends Thread {
 		String line;
 		try {
 			readLoop: while(true) {
+				updateInfo();
 				line = reader.readLine(); 
 				
 				switch (line) {
@@ -86,6 +87,7 @@ public class Client extends Thread {
 					break readLoop;
 				 
 				}
+				sleep(1000);
 			}
 			socket.close();
 			writer.close();
