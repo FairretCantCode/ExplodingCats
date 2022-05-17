@@ -69,6 +69,10 @@ public class ClientHandler extends Thread {
 	//Client methods
 	
 	public String getNameOfPlayers() {
+		if (game == null) {
+			return " ";
+		}
+		
 		String names = "";
 		for (Player p: game.getPlayers()) {
 			names += p.getName() + "|";
@@ -77,6 +81,9 @@ public class ClientHandler extends Thread {
 	}
 	
 	public String getHand() {
+		if (game == null) {
+			return " ";
+		}
 		String hand = "";
 		for (Card c: this.player.getHand()) {
 			hand += c.getName() + ","; 
@@ -85,6 +92,9 @@ public class ClientHandler extends Thread {
 	}
 	
 	public String getStack() {
+		if (game == null) {
+			return " ";
+		}
 		String stack = "";
 		for (Card c : game.getCardStack().getCardsInStack()) {
 			stack += c + ",";

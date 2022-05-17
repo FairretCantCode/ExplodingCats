@@ -47,7 +47,8 @@ public class Client extends Thread {
 	}
 	
 	public void updateInfo() {
-		this.updatePlayerList();
+		updatePlayerList();
+		
 	}
 	
 	public void updatePlayerList() {
@@ -61,7 +62,7 @@ public class Client extends Thread {
 				players = players.substring( players.indexOf("|")+ 1, players.length());
 			}
 			gameScreen.updateNames(give);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			
 		}
 		
@@ -74,9 +75,11 @@ public class Client extends Thread {
 		writer.flush();
 		
 		String line;
+		updateInfo();
 		try {
 			readLoop: while(true) {
-				updateInfo();
+				
+				
 				line = reader.readLine(); 
 				
 				switch (line) {
