@@ -34,10 +34,11 @@ public class GameScreen implements ActionListener{
 		panel.setBounds(60, 394, 615, 156);
 		frame2.getContentPane().add(panel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(561, 28, 213, 284);
-		frame2.getContentPane().add(lblNewLabel_1);
-
+		JLabel currentCard = new JLabel("");
+		currentCard.setBackground(Color.GRAY);
+		currentCard.setIcon(new ImageIcon(GameScreen.class.getResource("/Assets/explodingKitten(1).jpg.png")));
+		currentCard.setBounds(561, 28, 213, 284);
+		frame2.getContentPane().add(currentCard);
 		
 		
 	}
