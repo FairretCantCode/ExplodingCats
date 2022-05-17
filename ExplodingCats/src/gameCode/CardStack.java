@@ -8,11 +8,16 @@ public class CardStack{
   private Game game;
   private ArrayList<Card> stack;
   
-  public CardStack(Game g){
+  public CardStack(){
     stack = new ArrayList<Card>();
-    game = g;
   }
-
+  
+  //Getters
+  
+  public ArrayList<Card> getCardsInStack() {
+	  return this.stack;
+  }
+  
   public void addCard(Card c){
     stack.add(c);
   }
@@ -27,7 +32,7 @@ public class CardStack{
   }
   
   //Returns if the player blows up
-  public boolean evaluateStack(){
+  public boolean evaluateStack(Game g){
     boolean playerDies = false;
     if (this.hasCard("Exploding Cat")) {
     	playerDies = true;

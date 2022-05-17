@@ -27,18 +27,38 @@ public class Server extends Thread {
 		
 	}
 	
+	//Getters
+	
+	//Setters
+	
+	//Functionality Methods
+	
 	public void startServer(){
 		
-		try
-        {
+		try{
             sSocket = new ServerSocket( port );
             pool = Executors.newFixedThreadPool(8);
             this.start();
         }
-        catch (IOException e)
-        {
+        catch (IOException e){
             e.printStackTrace();
         }
+		
+	}
+	
+	public void stopAccepting() {
+		running = false;
+	}
+	public void closeServer(){
+		for (ClientHandler c: clients) {
+			c.send("quit");
+		}
+		try {
+			sSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		pool.shutdown();
 		
 	}
 	
@@ -56,24 +76,13 @@ public class Server extends Thread {
 		}
 	}
 	
-	public void closeServer(){
-		running = false;
-		for (ClientHandler c: clients) {
-			c.send("quit");
-		}
-		try {
-			sSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		pool.shutdown();
-		
-	}
+	
 	
 	public void makeGame() {
+		this.stopAccepting(); //Stops accepting people
 		ArrayList<Player> players = new ArrayList<Player>();
 		for (ClientHandler client:clients) {
-			players.add(new Player(client.getNameOfPlayer(), client));			
+			players.add(new Player(client.sendName(), client));			
 		}
 		game = new Game(players);
 		System.out.println("Game is created");
@@ -81,5 +90,7 @@ public class Server extends Thread {
 	
 	public void startGame() {
 		game.startGame();
+		this.closeServer();
 	}
+	
 }

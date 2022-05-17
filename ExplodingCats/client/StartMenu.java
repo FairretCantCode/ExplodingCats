@@ -63,15 +63,7 @@ public class StartMenu {
 		frame.repaint();
 	}
 	
-	
 
-	public void startApp() {
-		
-	}
-	public void gameApp() {
-	
-
-	}
 	public void guiDelete() {
 		frame.dispose();
 	}

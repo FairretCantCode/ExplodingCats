@@ -9,7 +9,6 @@ import java.awt.event.*;
 public class GameScreen implements ActionListener{
 		
 		private JFrame frame2;
-		private String ip;
 		private int port;
 		private final Action action = new SwingAction();
 		private User parent; 
@@ -43,14 +42,6 @@ public class GameScreen implements ActionListener{
 		
 	}
 
-	//getters
-	
-	public int getPort() {
-		return port;
-	}
-	public String getIp() {
-		return ip;
-	}
 
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {

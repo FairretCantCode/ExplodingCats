@@ -5,6 +5,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+import serverCode.Message;
 
 public class Client extends Thread {
 	private int port;
@@ -18,6 +19,15 @@ public class Client extends Thread {
 		this.ipAddress = ip;
 	
 	}
+	//Getters
+	
+	//Setters
+	
+	public void setNameOfPlayer(String n) {
+		name = n;
+	}
+	
+	//Functionality Methods
 	
 	public void startConnection() {
 		try {
@@ -42,7 +52,5 @@ public class Client extends Thread {
 		}
 		scan.close();
 	}
-	public void setNameOfPlayer(String n) {
-		name = n;
-	}
+	
 }
