@@ -50,6 +50,10 @@ public class GameScreen implements ActionListener{
 		}
 	}
 	
+	public void guiDelete() {
+		frame2.dispose();
+	}
+	
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "SwingAction");

@@ -10,4 +10,5 @@ public class Message {
 	//Constants used by the server to user. Used to ask the user for an action.
 	public static final String PLAYCARD = "play a card";
 	public static final String STARTTURN = "your turn";
+	public static final String QUITCONNECTION = "quit";
 }

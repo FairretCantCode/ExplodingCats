@@ -14,6 +14,8 @@ public class Client extends Thread {
 	private BufferedReader reader;
 	private PrintWriter writer;
 	private String name;
+	private GameScreen gameScreen;
+	
 	public Client(int p, String ip) {
 		this.port = p;
 		this.ipAddress = ip;
@@ -25,6 +27,10 @@ public class Client extends Thread {
 	
 	public void setNameOfPlayer(String n) {
 		name = n;
+	}
+	
+	public void setGameScreen(GameScreen g) {
+		gameScreen = g;
 	}
 	
 	//Functionality Methods
@@ -39,18 +45,49 @@ public class Client extends Thread {
 		}
 	}
 	
+	public void updateInfo() {
+		
+	}
+	
+	public void updatePlayerList() {
+
+	}
+	
 	@Override
 	public void run(){
 		//Sends the name
 		writer.println(name);
 		writer.flush();
-		Scanner scan = new Scanner(System.in);
-		while(true) {
-			 
-	
-			
+		
+		String line;
+		try {
+			readLoop: while(true) {
+				line = reader.readLine(); 
+				
+				switch (line) {
+				
+				
+				case Message.QUITCONNECTION:
+					gameScreen.guiDelete();
+					break readLoop;
+				 
+				}
+			}
+			socket.close();
+			writer.close();
+			reader.close();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
-		scan.close();
+
+		
+		
+	}
+	
+	private void send(String m) {
+		writer.println(m);
+		writer.flush();
+		System.out.println("Sending: " + m);
 	}
 	
 }

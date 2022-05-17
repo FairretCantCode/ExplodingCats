@@ -51,7 +51,7 @@ public class ClientHandler extends Thread {
 	
 	public String askForCard() {
 		try {
-			send("play a card");
+			send(Message.PLAYCARD);
 			return reader.readLine();
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -96,6 +96,8 @@ public class ClientHandler extends Thread {
 	
 	@Override
 	public void run() {
+		
+		//Getting the name of the player
 		while (name == null) {
 			try {
 				name = reader.readLine();
@@ -107,8 +109,7 @@ public class ClientHandler extends Thread {
 		//After registered into game
 		try {
 			 String line = reader.readLine();
-	            readLoop: while( true )
-	            {
+	            readLoop: while( true ){ 	
 	                switch(line) {
 	                case Message.GETPLAYERS:
 	                	this.send(this.getNameOfPlayers());
@@ -119,15 +120,12 @@ public class ClientHandler extends Thread {
 	                case Message.GETSTACK:
 	                	this.send(this.getStack());
 	                	break;
-	                	
-	                	
-	                	
-	                	
-	                	
-	                case "quit":
+ 	
+	                case Message.QUITCONNECTION:
 	                	break readLoop;
 	                }
 	                
+	                line = reader.readLine();
 	            }
 	            
 	            // Close our connection
@@ -139,7 +137,6 @@ public class ClientHandler extends Thread {
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public void send(String msg) {

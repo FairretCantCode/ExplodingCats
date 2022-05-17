@@ -51,7 +51,7 @@ public class Server extends Thread {
 	}
 	public void closeServer(){
 		for (ClientHandler c: clients) {
-			c.send("quit");
+			c.send(Message.QUITCONNECTION);
 		}
 		try {
 			sSocket.close();
@@ -69,6 +69,7 @@ public class Server extends Thread {
 			try {
 				ClientHandler client = new ClientHandler(sSocket.accept());			
 				clients.add(client);
+				System.out.println("Connected");
 				client.run();
 			}catch (IOException e) {
 				e.printStackTrace();
