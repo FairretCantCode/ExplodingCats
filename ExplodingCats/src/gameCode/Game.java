@@ -116,7 +116,7 @@ public class Game{
 	  public void GameLoop(){
 		  while (players.size() > 1){
 			  this.turn();
-			  currentPlayerIndex++;      
+			  currentPlayerIndex = (currentPlayerIndex + 1) % currentPlayerIndex;      
 	    }
 	  }
 	  

@@ -70,7 +70,7 @@ public class Server extends Thread {
 				ClientHandler client = new ClientHandler(sSocket.accept());			
 				clients.add(client);
 				System.out.println("Connected");
-				client.run();
+				pool.execute(client);
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -90,11 +90,13 @@ public class Server extends Thread {
 		game = new Game(players);
 		for (ClientHandler client: clients) {
 			client.setGame(game);
+			client.send("start game");
 		}
 		System.out.println("Game is created");
 	}
 	
 	public void startGame() {
+		makeGame();
 		game.startGame();
 		this.closeServer();
 	}

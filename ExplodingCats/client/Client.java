@@ -75,22 +75,21 @@ public class Client extends Thread {
 		writer.flush();
 		
 		String line;
-		updateInfo();
+		
 		try {
 			readLoop: while(true) {
-				
-				
 				line = reader.readLine(); 
 				
+				updateInfo();
 				switch (line) {
 				
 				
 				case Message.QUITCONNECTION:
 					gameScreen.guiDelete();
+					
 					break readLoop;
-				 
 				}
-				sleep(1000);
+				updateInfo();
 			}
 			socket.close();
 			writer.close();

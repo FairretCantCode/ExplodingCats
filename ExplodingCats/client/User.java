@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 
 public class User implements ActionListener{
 	
-	//private String name;
+	private String name;
 	private Client client;
 	private StartMenu gui;
 	private GameScreen gui2;

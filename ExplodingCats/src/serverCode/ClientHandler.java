@@ -113,7 +113,6 @@ public class ClientHandler extends Thread {
 				name = reader.readLine();
 			}catch (IOException e) {
 				e.printStackTrace();
-				break;
 			}
 		}
 		//After registered into game
