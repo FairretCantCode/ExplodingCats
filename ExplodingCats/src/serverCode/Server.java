@@ -96,7 +96,7 @@ public class Server extends Thread {
 	}
 	
 	public void startGame() {
-		makeGame();
+		this.makeGame();
 		game.startGame();
 		this.closeServer();
 	}

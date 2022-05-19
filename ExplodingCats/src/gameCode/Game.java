@@ -60,10 +60,14 @@ public class Game{
 	    deck.addCard(null);
 	  }
 	  
-	  public Card[] seeFuture(){
+	  public void seeFuture(){
 	    //Have something in the GUI part to show the cards returned here.
 	    Card[] top3 = {deck.getTopInt(1), deck.getTopInt(2), deck.getTopInt(3)};
-	    return top3;
+	    String msg = "future ";
+	    for (Card c: top3) {
+	    	msg += c.getName() + " "; 
+	    }
+	    getCurrentPlayer().getClient().send(msg);
 	  }
 	  
 	  //Game Methods
@@ -116,7 +120,7 @@ public class Game{
 	  public void GameLoop(){
 		  while (players.size() > 1){
 			  this.turn();
-			  currentPlayerIndex = (currentPlayerIndex + 1) % currentPlayerIndex;      
+			  currentPlayerIndex = (currentPlayerIndex + 1) % players.size();      
 	    }
 	  }
 	  

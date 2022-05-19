@@ -35,8 +35,7 @@ public class StartMenu {
 		startButton.addActionListener(p);
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nameEntered = textField.getText();
-				//setName(textField.getText());
+				setName(textField.getText());
 				
 				
 			}
@@ -69,8 +68,12 @@ public class StartMenu {
 	}
 	//Getters
 	
-	public String getName() {
+	public String getNameEntered() {
 		return nameEntered;
+	}
+	
+	public void setName(String n) {
+		nameEntered = n;
 	}
 	
 	private class SwingAction extends AbstractAction {

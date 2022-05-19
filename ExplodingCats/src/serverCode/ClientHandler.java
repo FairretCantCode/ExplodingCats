@@ -75,7 +75,7 @@ public class ClientHandler extends Thread {
 		
 		String names = "";
 		for (Player p: game.getPlayers()) {
-			names += p.getName() + "|";
+			names += p.getName() + ",";
 		}
 		return names;
 	}
@@ -149,7 +149,7 @@ public class ClientHandler extends Thread {
 	}
 	
 	public void send(String msg) {
-		System.out.println("sending " + msg);
+		System.out.println("Server Sending: " + msg);
 		writer.println(msg);
 		writer.flush();	
 	}

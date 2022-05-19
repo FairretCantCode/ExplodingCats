@@ -43,29 +43,35 @@ public class CardStack{
       switch (stack.get(i).getName()){
         case "Nope":
           stack.remove(i-1);
+          stack.remove(i);
+          i--;
+          
           break;
         case "Attack":
           //Somehow get the player
           String target = game.getRandomPlayer().getName();
           game.setCurrentPlayer(target);
+          stack.remove(i);
           break;
 
         case "Shuffle":
           game.shuffle();
+          stack.remove(i);
           break;
 
         case "Skip":
           game.skip();
+          stack.remove(i);
           break readStack;
 
         case "See the Future":
-          for (Card c: game.seeFuture()) {
-        	  game.getCurrentPlayer().showCard(c);
-          }
-          break;
+        	game.seeFuture();
+        	stack.remove(i);
+        	break;
           
         case "Defuse":
           playerDies = false;
+          stack.remove(i);
           break;
       }
     }

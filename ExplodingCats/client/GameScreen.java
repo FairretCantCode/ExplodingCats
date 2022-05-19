@@ -9,14 +9,14 @@ import java.awt.event.*;
 public class GameScreen implements ActionListener{
 		
 		private JFrame frame2;
-		private int port;
 		private final Action action = new SwingAction();
 		private User parent; 
 
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-		JLabel nameList = new JLabel("Names");
+		JLabel nameList = new JLabel("Players: ");
+		
 	public GameScreen(User p)  {
 		parent = p;
 		frame2 = new JFrame("Exploding Daub");
@@ -43,18 +43,12 @@ public class GameScreen implements ActionListener{
 		
 	}
 
-	public void updateNames(ArrayList<String> e) {
-		String mhm = "Players:";
-		for (int i = 0; i < e.size(); i++) {
-			mhm += "\n" + e.get(i);
-		}
+	public void updateNames(String e) {
+		String mhm = "Players: " + e;
 		nameList.setText(mhm);
 	}
 	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		case "start game": 
-			
-		}
+		
 	}
 	
 	public void guiDelete() {

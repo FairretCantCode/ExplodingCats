@@ -25,7 +25,8 @@ public class User implements ActionListener{
 		switch (e.getActionCommand()) {
 		case "start game":
 			client.startConnection();
-			client.setName(gui.getName());
+			
+			client.setName(gui.getNameEntered());
 			gui.guiDelete();
 			gui2 = new GameScreen(this);
 			client.setGameScreen(gui2);

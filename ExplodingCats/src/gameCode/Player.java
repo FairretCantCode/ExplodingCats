@@ -25,6 +25,10 @@ public class Player{
 		  return this.hand;
 	  }
 	  
+	  public ClientHandler getClient() {
+		  return handler;
+	  }
+	  
 	  //Game Method
 	  
 	  public void addCard(Card c){

@@ -54,14 +54,9 @@ public class Client extends Thread {
 	public void updatePlayerList() {
 		
 		try{
-			ArrayList<String> give = new ArrayList<String>();
 			this.send(Message.GETPLAYERS);
 			String players = reader.readLine();
-			while (players.indexOf("|") > 0) {
-				give.add(players.substring(0,players.indexOf("|")));
-				players = players.substring( players.indexOf("|")+ 1, players.length());
-			}
-			gameScreen.updateNames(give);
+			gameScreen.updateNames(players);
 		} catch (Exception e) {
 			
 		}
@@ -71,8 +66,13 @@ public class Client extends Thread {
 	@Override
 	public void run(){
 		//Sends the name
-		writer.println(name);
-		writer.flush();
+		try {
+			Thread.sleep(5000);
+			send(name);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		
 		String line;
 		
@@ -105,7 +105,7 @@ public class Client extends Thread {
 	private void send(String m) {
 		writer.println(m);
 		writer.flush();
-		System.out.println("Sending: " + m);
+		System.out.println("Client Sending: " + m);
 	}
 	
 }
