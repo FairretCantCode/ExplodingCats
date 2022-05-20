@@ -43,6 +43,15 @@ public class GameScreen implements ActionListener{
 		currentCard.setBounds(561, 28, 213, 284);
 		frame2.getContentPane().add(currentCard);
 		
+		JButton btnNewButton = new JButton("End Turn");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton.setBounds(685, 411, 89, 23);
+		frame2.getContentPane().add(btnNewButton);
+		
 		
 	}
 
@@ -67,10 +76,16 @@ public class GameScreen implements ActionListener{
 		}
 
 	}
-	public void addCard() {
-		JButton card = new JButton();
-		card.setVisible(true);
-		handPanel.add(card);	
+	public void updateHand(String s) {
+		ArrayList<String> cards = new ArrayList<String>();
+		while (s.indexOf("|") > 0) {
+			cards.add(s.substring(0, s.indexOf("|")));
+			s = s.substring(s.indexOf("|") + 1);
+		}
+		for (String es: cards) {
+			handPanel.add(new JButton(es));
+		}
+		
 		
 	}
 }
