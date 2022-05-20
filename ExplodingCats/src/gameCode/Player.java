@@ -65,4 +65,13 @@ public class Player{
 	  public void showCard(Card c) {
 		  handler.sendShownCard(c.getName());
 	  }
+	  
+	  public boolean hasCard(String name) {
+		  for(Card card : hand) {
+			  if(card.getName() == name) {
+				  return true;
+			  }
+		  }
+		  return false;
+	  }
 	}
