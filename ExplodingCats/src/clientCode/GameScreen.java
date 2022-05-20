@@ -17,6 +17,7 @@ public class GameScreen implements ActionListener{
 	/**
 	 * @wbp.parser.entryPoint
 	 */
+		JPanel handPanel = new JPanel();
 		JLabel nameList = new JLabel("Players: ");
 		
 	public GameScreen(User p)  {
@@ -32,9 +33,9 @@ public class GameScreen implements ActionListener{
 		nameList.setBounds(0, 11, 117, 342);
 		frame2.getContentPane().add(nameList);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(60, 394, 615, 156);
-		frame2.getContentPane().add(panel);
+		
+		handPanel.setBounds(60, 394, 615, 156);
+		frame2.getContentPane().add(handPanel);
 		
 		JLabel currentCard = new JLabel("");
 		currentCard.setBackground(Color.GRAY);
@@ -64,6 +65,13 @@ public class GameScreen implements ActionListener{
 		}
 		public void actionPerformed(ActionEvent e) {
 		}
+
+	}
+	public void addCard() {
+		JButton card = new JButton();
+		card.setVisible(true);
+		handPanel.add(card);	
+		
 	}
 }
 	

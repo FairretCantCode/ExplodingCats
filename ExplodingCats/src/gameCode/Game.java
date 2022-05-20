@@ -1,6 +1,8 @@
 package gameCode;
 	
 import java.util.ArrayList;
+
+import clientCode.GameScreen;
 	
 public class Game{
 	
@@ -8,6 +10,7 @@ public class Game{
 	  private ArrayList<Player> players;
 	  private Deck deck;
 	  private CardStack stack;
+	  private GameScreen gui2;
 	  
 	  public Game(ArrayList<Player> p){
 	    players = p;
@@ -77,6 +80,9 @@ public class Game{
 		  deck.shuffle();
 		  for (Player p : players){
 			  p.addCard(new Card("Defuse"));
+			  for (int i = 0; i < 5; i++) {
+				 gui2.addCard();
+			  }
 	      
 		  }
 		  GameLoop();
