@@ -46,7 +46,7 @@ public class GameScreen implements ActionListener{
 		JButton btnNewButton = new JButton("End Turn");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				frame2.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(685, 411, 89, 23);
