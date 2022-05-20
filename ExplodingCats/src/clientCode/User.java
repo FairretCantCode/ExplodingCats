@@ -44,6 +44,12 @@ public class User implements ActionListener{
 			
 			update_Client = new updateClient(port+1, ip, gui2);
 			update_Client.startConnection();
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			play_Client = new playClient(port + 2, ip);
 			play_Client.startConnection();
