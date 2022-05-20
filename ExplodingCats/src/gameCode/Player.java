@@ -1,20 +1,25 @@
 package gameCode;
 	
-import serverCode.*;
-import serverHandler.ClientHandler;
-
 import java.util.ArrayList;
+
+import serverHandler.ClientHandler;
+import serverHandler.PlayHandler;
+import serverHandler.UpdateHandler;
 	
 public class Player{
 	
 	  private ArrayList<Card> hand;
 	  private String name;
-	  private ClientHandler handler;
+	  private ClientHandler clientHandler;
+	  private PlayHandler playHandler;
+	  private UpdateHandler updateHandler;
 	  
-	  public Player(String n, ClientHandler c){
+	  public Player(String n, ClientHandler c, PlayHandler p, UpdateHandler u){
 	    name = n;
-	    handler = c;
+	    clientHandler = c;
 	    hand = new ArrayList<Card>();
+	    playHandler = p;
+	    updateHandler = u;
 	  }
 	  
 	  //Getters
@@ -28,7 +33,7 @@ public class Player{
 	  }
 	  
 	  public ClientHandler getClient() {
-		  return handler;
+		  return clientHandler;
 	  }
 	  
 	  //Game Method
@@ -53,7 +58,7 @@ public class Player{
 	  //Client Handler Method
 	  
 	  public Card playCard() {
-		  String cardName = handler.askForCard();
+		  String cardName = playHandler.askForCard();
 		  for (Card c:this.hand) {
 			  if (c.getName().equals(cardName)) {
 				  return c;
@@ -63,7 +68,7 @@ public class Player{
 	  }
 	  
 	  public void showCard(Card c) {
-		  handler.sendShownCard(c.getName());
+		  playHandler.sendShownCard(c.getName());
 	  }
 	  
 	  public boolean hasCard(String name) {

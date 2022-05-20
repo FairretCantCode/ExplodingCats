@@ -85,7 +85,7 @@ public class Server extends Thread {
 		this.stopAccepting(); //Stops accepting people
 		ArrayList<Player> players = new ArrayList<Player>();
 		for (ClientHandler client:clients) {
-			Player p = new Player(client.sendName(), client);
+			Player p = new Player(client.sendName(), client, client.getPlayHandler(), client.getUpdateHandler());
 			client.setPlayer(p);
 			players.add(p);			
 		}

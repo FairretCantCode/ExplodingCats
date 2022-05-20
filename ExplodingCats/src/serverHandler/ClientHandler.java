@@ -35,6 +35,14 @@ public class ClientHandler extends Handler {
 		return name;
 	}
 	
+	public PlayHandler getPlayHandler() {
+		return playHandler;
+	}
+	
+	public UpdateHandler getUpdateHandler() {
+		return updateHandler;
+	}
+	
 	//Setters
 	
 	public void setGame(Game g) {
