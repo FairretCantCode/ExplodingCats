@@ -17,6 +17,7 @@ public class ClientHandler extends Handler {
 	private String name;
 	private Game game;
 	private Player player;
+	private boolean running;
 	
 	private UpdateHandler updateHandler;
 	private PlayHandler playHandler;
@@ -25,6 +26,7 @@ public class ClientHandler extends Handler {
 	public ClientHandler(Socket c){
 		super(c);
 		pool = Executors.newFixedThreadPool(2);
+		running = true;
 	}
 	
 	//Getters
@@ -43,18 +45,7 @@ public class ClientHandler extends Handler {
 		this.player = p;
 	}
 	
-	//Methods to communicate to user
-	
-	public String askForCard() {
-		send(Message.PLAYCARD);
-		return readFromClient();
-	}
-	
-	//I'm thinking that we use this method for the see into the future card. Usually we can use the update method for showing 
-	public void sendShownCard(String c) {	
-		send("show " + c);
-	}
-	
+		
 	
 	
 	
@@ -65,6 +56,7 @@ public class ClientHandler extends Handler {
 	public void closeConnection() {
 		super.closeConnection();
 		pool.shutdown();
+		running = false;
 	}
 	
 	//Method will make the playHandler
@@ -103,9 +95,25 @@ public class ClientHandler extends Handler {
 	
 	@Override
 	public void run() {
-		//Creating the other handlers
-
+		//Getting the name of the client
+		try {
+			send(Message.ASKFORNAME);
+			name = readFromClient();
+			wait(3000);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		
+		//Creating the other handlers
+		makeUpdateHandler();
+		makePlayHandler();
+		while (running) {
+			
+		}
+		playHandler.closeConnection();
+		updateHandler.closeConnection();
+		this.interrupt();
 	}
 	
 	

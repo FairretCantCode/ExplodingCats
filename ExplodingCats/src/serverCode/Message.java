@@ -11,4 +11,6 @@ public class Message {
 	public static final String PLAYCARD = "play a card";
 	public static final String STARTTURN = "your turn";
 	public static final String QUITCONNECTION = "quit";
+	
+	public static final String ASKFORNAME = "what is your name";
 }

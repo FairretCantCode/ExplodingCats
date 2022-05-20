@@ -1,6 +1,5 @@
 package clientCode.clientHandler;
 
-import clientCode.GameScreen;
 import serverCode.Message;
 
 /*
@@ -9,33 +8,27 @@ import serverCode.Message;
 
 public class playClient extends Client{
 	
-	
-	
-	private String name;
-	
 	public playClient(int p, String ip) {
 		super(p, ip);
 	}
-
-	
-	
 
 	//Getters
 	
 	
 	//Setters
 	
-	public void setNameOfPlayer(String n) {
-		name = n;
-	}
+	
 	
 	
 	
 	
 	//Functionality
 	
+	
+	
 	@Override
 	public void run() {
+		/*
 		String line;
 		try {
 			readLoop: while(true) {
@@ -51,7 +44,7 @@ public class playClient extends Client{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		*/
 	}
 	
 	

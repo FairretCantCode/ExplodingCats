@@ -58,7 +58,7 @@ public class Server extends Thread {
 	}
 	public void closeServer(){
 		for (ClientHandler c: clients) {
-			c.send(Message.QUITCONNECTION);
+			c.closeConnection();
 		}
 		pool.shutdown();
 		

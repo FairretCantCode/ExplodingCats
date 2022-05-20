@@ -14,7 +14,6 @@ public class updateClient extends Client{
 	public updateClient(int p, String ip, GameScreen g) {
 		super(p, ip);
 		gui = g;
-		
 	}
 	
 	public void updateInfo() {
