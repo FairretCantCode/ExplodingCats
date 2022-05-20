@@ -18,7 +18,7 @@ public class GameScreen implements ActionListener{
 	 * @wbp.parser.entryPoint
 	 */
 		JPanel handPanel = new JPanel();
-		JLabel nameList = new JLabel("Downloading virus...");
+		JLabel nameList = new JLabel("Players: ");
 		
 	public GameScreen(User p)  {
 		parent = p;
@@ -46,7 +46,7 @@ public class GameScreen implements ActionListener{
 		JButton btnNewButton = new JButton("End Turn");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame2.setVisible(false);
+				
 			}
 		});
 		btnNewButton.setBounds(685, 411, 89, 23);
@@ -56,9 +56,11 @@ public class GameScreen implements ActionListener{
 	}
 
 	public void updateNames(String e) {
-		String mhm = "Players: " + e;
+		String mhm = "Players: " + e.substring(0, e.length()-1);
 		nameList.setText(mhm);
+		frame2.repaint();
 	}
+	
 	public void actionPerformed(ActionEvent e) {
 		
 	}

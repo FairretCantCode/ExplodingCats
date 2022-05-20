@@ -64,22 +64,30 @@ public class ClientHandler extends Handler {
 	public void closeConnection() {
 		super.closeConnection();
 		pool.shutdown();
+		playHandler.closeConnection();
+		updateHandler.closeConnection();
+		this.interrupt();
 		running = false;
+	}
+	
+	public void startHandlers() {
+		//Running the other handlers
+		//pool.execute(playHandler);
+		pool.execute(updateHandler);
 	}
 	
 	//Method will make the playHandler
 	
 	public void makePlayHandler() {
 		try {
-			ServerSocket s = new ServerSocket(4557);
-			while (playHandler == null) {
+			ServerSocket s = new ServerSocket(4554);
+			if (playHandler == null) {
 				playHandler = new PlayHandler(s.accept());
-				System.out.println("Play Handler connected");
-				pool.execute(playHandler);
+				System.out.println("Play Handler connected");	
 			}
 			s.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Something is always wrong here");
 		}
 		
 	}
@@ -89,10 +97,10 @@ public class ClientHandler extends Handler {
 	public void makeUpdateHandler() {
 		try {
 			ServerSocket s = new ServerSocket(4556);
-			while (updateHandler == null) {
+			if (updateHandler == null) {
 				updateHandler = new UpdateHandler(s.accept(), game, player);
 				System.out.println("Update Handler connected");
-				pool.execute(updateHandler);
+				
 			}
 			s.close();
 		} catch (IOException e) {
@@ -107,21 +115,14 @@ public class ClientHandler extends Handler {
 		try {
 			send(Message.ASKFORNAME);
 			name = readFromClient();
-			wait(3000);
+			//wait(3000);
 		}catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
-		
-		
-		//Creating the other handlers
 		makeUpdateHandler();
 		makePlayHandler();
-		while (running) {
-			
-		}
-		playHandler.closeConnection();
-		updateHandler.closeConnection();
-		this.interrupt();
+
+		
 	}
 	
 	

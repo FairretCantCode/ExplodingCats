@@ -16,13 +16,19 @@ public class Game{
 	  
 	  public boolean playerDies = false;
 
-
+	  
 	  public Game(ArrayList<Player> p){
 	    players = p;
 	    currentPlayerIndex = 0;
-	    deck = new Deck(p.size()-1);
+	    deck = new Deck();
 	    stack = new CardStack();
 	  }
+	  public Game(){
+		    players = new ArrayList<Player>();
+		    currentPlayerIndex = 0;
+		    deck = new Deck();
+		    stack = new CardStack();
+		  }
 	  
 	  
 	  //Getters
@@ -44,6 +50,10 @@ public class Game{
 	  }
 	  
 	  //Setters
+	  
+	  public void addPlayer(Player p) {
+		  players.add(p);
+	  }
 	  
 	  public void setCurrentPlayer(String n){
 	    int index = -1;
@@ -92,7 +102,7 @@ public class Game{
 	  //Game Methods
 	  
 	  public void startGame(){
-		  deck.populate();
+		  deck.populate(players.size());
 		  deck.shuffle();
 		  for (Player p : players){
 			  p.addCard(new Card("Defuse"));
@@ -113,7 +123,7 @@ public class Game{
 	    }else {
 	    	current.addCard(deck.draw());
 	    	if (deck.getLength() == 0) {
-	    		deck.populate();
+	    		deck.populate(players.size());
 	    		deck.shuffle();
 	    	}
 	    }

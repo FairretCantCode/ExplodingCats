@@ -50,7 +50,7 @@ public class Handler extends Thread{
 		String msg = "";
 		try {
 			msg = reader.readLine();
-			notify();
+			//notify();
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

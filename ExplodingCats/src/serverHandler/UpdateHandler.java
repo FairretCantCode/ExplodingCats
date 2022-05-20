@@ -54,7 +54,7 @@ public class UpdateHandler extends Handler{
 			 String line = "";
 	            readLoop: while( true ){ 	
 	                line = this.readFromClient();
-	                wait(3000);
+	                //wait(3000);
 	            	if (line != null) {
 	            		switch(line) {
 		                case Message.GETPLAYERS:

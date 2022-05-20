@@ -7,8 +7,7 @@ public class Deck{
 	  private String[] cards = {"Exploding Cat", "Attack", "See the Future",
 			  					"Shuffle", "Nope", "Bearded Cat", "Rainbow Cat"};
 	  
-	  public Deck(int i){
-		  numBombs = i;
+	  public Deck(){
 		  deck = new ArrayList<Card>();
 	  }
 	  
@@ -22,8 +21,9 @@ public class Deck{
 	  
 	  
 	  //Game methods
-	  public void populate() {
-		  for (int j =0; j < this.numBombs; j++) {
+	  public void populate(int numPlayers) {
+		  
+		  for (int j =0; j < numPlayers-1; j++) {
 			  deck.add(new Card(cards[0]));
 		  }
 		  for (int i = 1; i < cards.length-1; i++) {

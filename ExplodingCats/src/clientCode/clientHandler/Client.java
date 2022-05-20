@@ -38,7 +38,7 @@ public class Client extends Thread {
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			writer = new PrintWriter(socket.getOutputStream(), true);
 		}catch (IOException e) {
-			System.out.println("Can't connect");
+			System.out.println("Can't connect to port " + port);
 		}
 	}
 	
@@ -46,7 +46,7 @@ public class Client extends Thread {
 		String msg = "";
 		try {
 			msg = reader.readLine();
-			notify();
+			//notify();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

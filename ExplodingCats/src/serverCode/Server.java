@@ -57,11 +57,11 @@ public class Server extends Thread {
 		}
 	}
 	public void closeServer(){
+		stopAccepting();
 		for (ClientHandler c: clients) {
 			c.closeConnection();
 		}
 		pool.shutdown();
-		
 	}
 	
 	@Override
@@ -71,8 +71,7 @@ public class Server extends Thread {
 			try {
 				ClientHandler client = new ClientHandler(sSocket.accept());			
 				clients.add(client);
-				System.out.println("Connected");
-				pool.execute(client);
+				System.out.println("A player has connected");
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -83,22 +82,29 @@ public class Server extends Thread {
 	
 	public void makeGame() {
 		this.stopAccepting(); //Stops accepting people
-		ArrayList<Player> players = new ArrayList<Player>();
+		game = new Game();
+		
 		for (ClientHandler client:clients) {
+			client.setGame(game);
+			pool.execute(client);
+			try {
+				Thread.sleep(1000);
+			}catch(Exception e) {
+				System.out.println("Can't Sleep???");
+			}
 			Player p = new Player(client.sendName(), client, client.getPlayHandler(), client.getUpdateHandler());
 			client.setPlayer(p);
-			players.add(p);			
-		}
-		game = new Game(players);
-		for (ClientHandler client: clients) {
-			client.setGame(game);
-			client.send("start game");
+			game.addPlayer(p);		
+			
 		}
 		System.out.println("Game is created");
 	}
 	
 	public void startGame() {
 		this.makeGame();
+		for (ClientHandler c: clients) {
+			c.startHandlers();
+		}
 		game.startGame();
 		this.closeServer();
 	}

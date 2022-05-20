@@ -26,8 +26,8 @@ public class updateClient extends Client{
 		try{
 			this.send(Message.GETPLAYERS);
 			String players = readFromServer();
-			wait(3000);
-			if (players != null)
+			//wait(3000);
+			if (!players.isEmpty())
 				gui.updateNames(players);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,10 +38,11 @@ public class updateClient extends Client{
 		try{
 			this.send(Message.GETHAND);
 			String hand = readFromServer();
-			wait(3000);
+			//wait(3000);
 			//Method to update hand
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 	}
 	
@@ -49,7 +50,7 @@ public class updateClient extends Client{
 		try{
 			this.send(Message.GETSTACK);
 			String stack = readFromServer();
-			wait(3000);
+			//wait(3000);
 			//Method to update stack
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,9 +62,9 @@ public class updateClient extends Client{
 		while(true) {
 			updateInfo();
 			try {
-				sleep(2000);
+				sleep(5000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				
 			}
 		}
 	}

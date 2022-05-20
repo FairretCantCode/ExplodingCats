@@ -71,7 +71,7 @@ public class StartMenu {
 	//Getters
 	
 	public String getNameEntered() {
-		return nameEntered;
+		return textField.getText();
 	}
 	
 	public void setName(String n) {

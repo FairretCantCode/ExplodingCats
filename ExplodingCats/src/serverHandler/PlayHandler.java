@@ -12,16 +12,20 @@ public class PlayHandler extends Handler{
 	
 	//Methods to communicate to user
 	
-		public String askForCard() {
-			send(Message.PLAYCARD);
-			return readFromClient();
-		}
+	public String askForCard() {
+		send(Message.PLAYCARD);
+		return readFromClient();
+	}
 		
-		//I'm thinking that we use this method for the see into the future card. Usually we can use the update method for showing 
-		public void sendShownCard(String c) {	
-			send("show " + c);
-		}
-
+	//I'm thinking that we use this method for the see into the future card. Usually we can use the update method for showing 
+	public void sendShownCard(String c) {	
+		send("show " + c);
+	}
+	
+	@Override
+	public void run() {
+		
+	}
 	
 	
 }

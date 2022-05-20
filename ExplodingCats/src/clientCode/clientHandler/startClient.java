@@ -6,11 +6,8 @@ public class startClient extends Client{
 	
 	private String name;
 	
-	public startClient(int p, String ip) {
+	public startClient(int p, String ip, String n) {
 		super(p, ip);
-	}
-	
-	public void setNameOfPlayer(String n) {
 		name = n;
 	}
 	

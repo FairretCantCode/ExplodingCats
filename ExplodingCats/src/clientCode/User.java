@@ -25,7 +25,6 @@ public class User implements ActionListener{
 	public User(int port, String ip) {
 		this.port = port;
 		this.ip = ip;
-		start_Client = new startClient(port, ip);
 		pool = Executors.newFixedThreadPool(3);
 	}
 	
@@ -37,22 +36,26 @@ public class User implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "start game":
-			start_Client.setName(gui.getNameEntered());
+			start_Client = new startClient(port, ip, gui.getNameEntered());
 			start_Client.startConnection();
+			System.out.println("Start Client engaged");
+			
 			gui.guiDelete();
 			gui2 = new GameScreen(this);
 			
 			update_Client = new updateClient(port+1, ip, gui2);
 			update_Client.startConnection();
+			System.out.println("Update Client engaged");
 			
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 			
-			play_Client = new playClient(port + 2, ip);
+			play_Client = new playClient(port-1, ip);
 			play_Client.startConnection();
+			System.out.println("Play Client engaged");
 			
 			pool.execute(start_Client);
 			pool.execute(update_Client);
