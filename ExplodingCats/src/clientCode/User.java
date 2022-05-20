@@ -1,6 +1,10 @@
+package clientCode;
+
 import java.awt.event.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import clientCode.clientHandler.Client;
 
 public class User implements ActionListener{
 	

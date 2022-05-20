@@ -1,7 +1,9 @@
 package gameCode;
 	
 import serverCode.*;
-	import java.util.ArrayList;
+import serverHandler.ClientHandler;
+
+import java.util.ArrayList;
 	
 public class Player{
 	

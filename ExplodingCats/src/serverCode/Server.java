@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 import gameCode.Game;
 import gameCode.Player;
+import serverHandler.ClientHandler;
 
 
 public class Server extends Thread {
@@ -48,15 +49,16 @@ public class Server extends Thread {
 	
 	public void stopAccepting() {
 		running = false;
+		try {
+			sSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void closeServer(){
 		for (ClientHandler c: clients) {
 			c.send(Message.QUITCONNECTION);
-		}
-		try {
-			sSocket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		pool.shutdown();
 		
