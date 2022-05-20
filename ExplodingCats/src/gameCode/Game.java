@@ -72,6 +72,10 @@ public class Game{
 	    }
 	    getCurrentPlayer().getClient().send(msg);
 	  }
+	  public void attack() {
+		  deck.addCard(null);
+		  
+	  }
 	  
 	  //Game Methods
 	  
@@ -80,9 +84,6 @@ public class Game{
 		  deck.shuffle();
 		  for (Player p : players){
 			  p.addCard(new Card("Defuse"));
-			  for (int i = 0; i < 5; i++) {
-				 gui2.addCard();
-			  }
 	      
 		  }
 		  GameLoop();
