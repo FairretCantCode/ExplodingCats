@@ -2,6 +2,7 @@ package gameCode;
 public class Card{
 
   private String name;
+  
   public Card(String n){
     name = n;
   }
@@ -9,5 +10,4 @@ public class Card{
   public String getName(){
     return name;
   }
-
 }

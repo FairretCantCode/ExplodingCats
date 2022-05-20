@@ -12,6 +12,11 @@ public class Game{
 	  private CardStack stack;
 	  private GameScreen gui2;
 	  
+	  public ArrayList<TimeDaub> allTimeDaubs = new ArrayList<TimeDaub>();
+	  
+	  public boolean playerDies = false;
+
+
 	  public Game(ArrayList<Player> p){
 	    players = p;
 	    currentPlayerIndex = 0;
@@ -52,6 +57,13 @@ public class Game{
 	    }
 	  }
 	  
+	  public void setCurrentPlayer(int n) {
+		  int index = players.indexOf(n);
+		  if (index >= 0) {
+			  currentPlayerIndex = index;
+		  }
+	  }
+	  
 	  //Card Effects 
 	  
 	  public void shuffle(){
@@ -86,6 +98,7 @@ public class Game{
 			  p.addCard(new Card("Defuse"));
 	      
 		  }
+		  
 		  GameLoop();
 		  System.out.println(players.get(0).getName() + " is the winner!");
 	  }
@@ -126,8 +139,26 @@ public class Game{
 	  
 	  public void GameLoop(){
 		  while (players.size() > 1){
+			  playerDies = false;
+			  if(getCurrentPlayer().hasCard("Exploding Daub")) {
+				  playerDies = true;
+			  }
+			  for(int i = 0; i < allTimeDaubs.size(); i++) {
+				  if(allTimeDaubs.get(i).getCountdown() <= 0) {
+					  playerDies = true;
+					  allTimeDaubs.remove(i);
+					  i--;
+				  }
+			  }
+			  
 			  this.turn();
-			  currentPlayerIndex = (currentPlayerIndex + 1) % players.size();      
+			  for(int i = 0; i < getCurrentPlayer().getHand().size(); i ++) {
+				  if(getCurrentPlayer().getHand().get(i).getName() == "Exploding Daub") {
+					  getCurrentPlayer().getHand().remove(i);
+					  i --;
+				  }
+			  }
+			  currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
 	    }
 	  }
 	  
