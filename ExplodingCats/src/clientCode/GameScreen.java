@@ -18,7 +18,7 @@ public class GameScreen implements ActionListener{
 	 * @wbp.parser.entryPoint
 	 */
 		JPanel handPanel = new JPanel();
-		JLabel nameList = new JLabel("Players: ");
+		JLabel nameList = new JLabel("Downloading virus...");
 		
 	public GameScreen(User p)  {
 		parent = p;
@@ -78,9 +78,9 @@ public class GameScreen implements ActionListener{
 	}
 	public void updateHand(String s) {
 		ArrayList<String> cards = new ArrayList<String>();
-		while (s.indexOf("|") > 0) {
-			cards.add(s.substring(0, s.indexOf("|")));
-			s = s.substring(s.indexOf("|") + 1);
+		while (s.indexOf(",") > 0) {
+			cards.add(s.substring(0, s.indexOf(",")));
+			s = s.substring(s.indexOf(",") + 1);
 		}
 		for (String es: cards) {
 			handPanel.add(new JButton(es));
