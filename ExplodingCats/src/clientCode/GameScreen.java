@@ -86,7 +86,9 @@ public class GameScreen implements ActionListener{
 		}
 		for (String es: cards) {
 			handPanel.add(new JButton(es));
+			
 		}
+		handPanel.repaint();
 		
 		
 	}

@@ -71,9 +71,11 @@ public class ClientHandler extends Handler {
 	}
 	
 	public void startHandlers() {
+		
 		//Running the other handlers
 		//pool.execute(playHandler);
 		pool.execute(updateHandler);
+		pool.execute(playHandler);
 	}
 	
 	//Method will make the playHandler
@@ -119,8 +121,7 @@ public class ClientHandler extends Handler {
 		}catch (Exception e) {
 			//e.printStackTrace();
 		}
-		makeUpdateHandler();
-		makePlayHandler();
+		
 
 		
 	}

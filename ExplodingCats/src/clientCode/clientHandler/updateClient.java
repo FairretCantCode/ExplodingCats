@@ -39,7 +39,7 @@ public class updateClient extends Client{
 			this.send(Message.GETHAND);
 			String hand = readFromServer();
 			//wait(3000);
-			//Method to update hand
+			gui.updateHand(hand);
 		} catch (Exception e) {
 			e.printStackTrace();
 			

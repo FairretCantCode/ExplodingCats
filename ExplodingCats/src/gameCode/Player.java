@@ -14,12 +14,10 @@ public class Player{
 	  private PlayHandler playHandler;
 	  private UpdateHandler updateHandler;
 	  
-	  public Player(String n, ClientHandler c, PlayHandler p, UpdateHandler u){
+	  public Player(String n, ClientHandler c){
 	    name = n;
 	    clientHandler = c;
 	    hand = new ArrayList<Card>();
-	    playHandler = p;
-	    updateHandler = u;
 	  }
 	  
 	  //Getters
@@ -36,6 +34,15 @@ public class Player{
 		  return clientHandler;
 	  }
 	  
+	  //Setters
+	  
+	  public void setUpdate(UpdateHandler u) {
+		  updateHandler = u;
+	  }
+	  
+	  public void setPlay(PlayHandler p) {
+		  playHandler = p;
+	  }
 	  //Game Method
 	  
 	  public void addCard(Card c){

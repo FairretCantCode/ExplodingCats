@@ -71,6 +71,7 @@ public class Server extends Thread {
 			try {
 				ClientHandler client = new ClientHandler(sSocket.accept());			
 				clients.add(client);
+				pool.execute(client);
 				System.out.println("A player has connected");
 			}catch (IOException e) {
 				e.printStackTrace();
@@ -86,15 +87,19 @@ public class Server extends Thread {
 		
 		for (ClientHandler client:clients) {
 			client.setGame(game);
-			pool.execute(client);
+			
 			try {
 				Thread.sleep(1000);
 			}catch(Exception e) {
 				System.out.println("Can't Sleep???");
 			}
-			Player p = new Player(client.sendName(), client, client.getPlayHandler(), client.getUpdateHandler());
+			Player p = new Player(client.sendName(), client);
 			client.setPlayer(p);
-			game.addPlayer(p);		
+			p.setPlay(client.getPlayHandler());
+			p.setUpdate(client.getUpdateHandler());
+			client.makeUpdateHandler();
+			client.makePlayHandler();
+			game.addPlayer(p);
 			
 		}
 		System.out.println("Game is created");
